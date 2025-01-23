@@ -6,10 +6,12 @@ type EnvironmentDetails = {
   };
 };
 
-export const ENV: EnvironmentDetails = {
+const ENV: EnvironmentDetails = {
   executeAs: "USER_DEPLOYING", // "USER_DEPLOYING" | "USER_ACCESSING"
   domain: {
     type: "Personal",
     name: "",
   },
 };
+
+export {ENV};  // fix from original fork from mikedownsdev
