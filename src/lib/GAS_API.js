@@ -1,6 +1,30 @@
 import polyfillScriptRun from "./polyfillScriptRun";
 polyfillScriptRun();
 
+// Add mock data for development
+const mockMembers = [
+  {
+    name: "John Doe",
+    email: "john@example.com",
+    roles: ["admin", "user"]
+  },
+  {
+    name: "Jane Smith",
+    email: "jane@example.com",
+    roles: ["user"]
+  },
+  {
+    name: "Bob Wilson",
+    email: "bob@example.com",
+    roles: ["superAdmin", "user"]
+  },
+  {
+    name: "Alice Brown",
+    email: "alice@example.com",
+    roles: ["user"]
+  }
+];
+
 /**
  * Generic function to handle API calls
  * @param {string} functionName
@@ -8,6 +32,19 @@ polyfillScriptRun();
  * @returns {Promise<any>}
  */
 const callAPI = async (functionName, args = []) => {
+  // For development mode, handle mock data
+  if (import.meta.env.DEV) {
+    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
+    
+    switch (functionName) {
+      case "getMembers":
+        return mockMembers;
+      // Keep existing mock cases if any
+      default:
+        console.log("No mock data for", functionName);
+    }
+  }
+
   console.log("calling api", functionName, args);
   return new Promise((resolve, reject) => {
     google.script.run
@@ -53,4 +90,9 @@ export const GAS_API = {
    * @returns {Promise<View>}
    */
   getViewData: (args) => callAPI("getViewData", args),
+
+  /**
+   * @returns {Promise<Array<{name: string, email: string, roles: string[]}>>}
+   */
+  getMembers: () => callAPI("getMembers"),
 };
