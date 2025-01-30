@@ -1,6 +1,16 @@
 import polyfillScriptRun from "./polyfillScriptRun";
 polyfillScriptRun();
 
+/** @typedef {import('../types/gas').AppConfiguration} AppConfiguration */
+/** @typedef {import('../types/gas').User} User */
+/** @typedef {import('../types/gas').ViewConfiguration} ViewConfiguration */
+/** @typedef {import('../types/gas').View} View */
+/** @typedef {import('../types/gas').GetUserArgs} GetUserArgs */
+/** @typedef {import('../types/gas').PutUserArgs} PutUserArgs */
+/** @typedef {import('../types/gas').PutAppConfigArgs} PutAppConfigArgs */
+/** @typedef {import('../types/gas').GetViewConfigArgs} GetViewConfigArgs */
+/** @typedef {import('../types/gas').GetViewDataArgs} GetViewDataArgs */
+
 // Add mock data for development
 const mockMembers = [
   {
@@ -73,7 +83,6 @@ export const GAS_API = {
   getUser: (args) => callAPI("getUser", args),
 
   /**
-   *
    * @param {PutUserArgs} args
    * @returns {Promise<User>}
    */

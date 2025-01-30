@@ -4,7 +4,7 @@
     import { sessionUser, isLoading } from "../stores";
 </script>
 
-<div class="navbar bg-base-100 mb-8 {$isLoading ? 'loading-border' : ''}">
+<div class="navbar bg-base-100 mb-8  {$isLoading ? 'loading-border' : ''}">
     <div class="flex-none">
         <label for="nav-drawer-control" class="btn btn-square btn-ghost">
             <svg

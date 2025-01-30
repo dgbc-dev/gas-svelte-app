@@ -53,6 +53,7 @@
                 Modify your app's settings. Remember to save!
             </p>
             <div slot="panel-content" class="form-control w-full max-w-xs">
+                <!-- svelte-ignore a11y-label-has-associated-control -->
                 <label class="label">
                     <span class="label-text">App Name</span>
                 </label>
