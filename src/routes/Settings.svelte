@@ -62,8 +62,7 @@
                     disabled={$isLoading}
                     type="text"
                     placeholder="Type here"
-                    class="input input-bordered w-full max-w-xs"
-                />
+                    class="input input-bordered w-full max-w-xs"/>
             </div>
         </Panel>
 
@@ -72,8 +71,7 @@
                 slot="button"
                 onclick="add_admin_modal.showModal()"
                 disabled={!$sessionUser.roles.includes("superAdmin")}
-                class="btn">Add Admin</button
-            >
+                class="btn">Add Admin</button>
             <p class="text-gray-500" slot="description">
                 Remember, admins have access to do some spooky stuff!
             </p>

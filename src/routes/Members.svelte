@@ -2,8 +2,10 @@
   import { onMount } from "svelte";
   import { GAS_API } from "../lib/GAS_API";
   import { isLoading } from "../stores";
+  import AddMemberModal from "../components/AddMemberModal.svelte";
 
   let members = [];
+  let showAddMemberModal = false;
 
   onMount(async () => {
     isLoading.set(true);
@@ -16,10 +18,29 @@
       isLoading.set(false);
     }
   });
+
+  async function handleAddMember(event) {
+    const newMember = event.detail;
+    isLoading.set(true);
+    
+    try {
+      const response = await GAS_API.putMember(newMember);
+      members = [...members, response];
+    } catch (error) {
+      console.error("Error adding member:", error);
+    } finally {
+      isLoading.set(false);
+    }
+  }
 </script>
 
 <div class="prose max-w-none">
-  <h1>Members</h1>
+  <div class="flex justify-between items-center">
+    <h1>Members</h1>
+    <button class="btn btn-primary" on:click={() => showAddMemberModal = true}>
+      Add Member
+    </button>
+  </div>
 
   {#if $isLoading}
     <div class="flex justify-center">
@@ -47,4 +68,10 @@
       </table>
     </div>
   {/if}
-</div> 
+</div>
+
+<AddMemberModal 
+  show={showAddMemberModal}
+  on:close={() => showAddMemberModal = false}
+  on:addMember={handleAddMember}
+/> 

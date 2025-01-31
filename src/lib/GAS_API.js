@@ -49,6 +49,10 @@ const callAPI = async (functionName, args = []) => {
     switch (functionName) {
       case "getMembers":
         return mockMembers;
+      case "putMember":
+        const newMember = args;
+        mockMembers.push(newMember);
+        return newMember;
       // Keep existing mock cases if any
       default:
         console.log("No mock data for", functionName);
@@ -99,6 +103,12 @@ export const GAS_API = {
    * @returns {Promise<View>}
    */
   getViewData: (args) => callAPI("getViewData", args),
+
+  /**
+   * @param {{name: string, email: string, roles: string[]}} args
+   * @returns {Promise<{name: string, email: string, roles: string[]}>}
+   */
+  putMember: (args) => callAPI("putMember", args),
 
   /**
    * @returns {Promise<Array<{name: string, email: string, roles: string[]}>>}

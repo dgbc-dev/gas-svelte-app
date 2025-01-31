@@ -39,7 +39,7 @@
 
     function toggleSelect(user) {
         const index = selectedUsers.findIndex(
-            (selected) => selected.id === user.id
+            (selected) => selected.id === user.id,
         );
 
         if (index > -1) {
@@ -79,11 +79,13 @@
     <div class="pt-4">
         {#if searchResults.length > 0}
             {#each searchResults as userResult}
+                <!-- svelte-ignore a11y-click-events-have-key-events -->
+                <!-- svelte-ignore a11y-no-static-element-interactions -->
                 <div
                     class="flex items-center space-x-3 p-2 my-2 hover:bg-base-200 hover:cursor-pointer"
                     on:click={() => toggleSelect(userResult)}
                     class:selected={selectedUsers.some(
-                        (selected) => selected.id === userResult.id
+                        (selected) => selected.id === userResult.id,
                     )}
                 >
                     <div class="flex justify-center items-center space-x-3">
