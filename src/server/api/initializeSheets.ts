@@ -1,34 +1,56 @@
+import { CONFIG } from '../config';
+
 export function initializeSheets() {
   try {
     // @ts-ignore
     const spreadsheet = SpreadsheetApp.openById(CONFIG.SPREADSHEET_ID);
     // @ts-ignore
-    let sheet = spreadsheet.getSheetByName(CONFIG.MEMBERS_SHEET);
+    let memberSheet = spreadsheet.getSheetByName(CONFIG.MEMBERS_SHEET);
+    let settingsSheet = spreadsheet.getSheetByName(CONFIG.SETTINGS_SHEET);
 
-    if (!sheet) {
+    if (!memberSheet) {
       // @ts-ignore
-      sheet = spreadsheet.insertSheet(CONFIG.MEMBERS_SHEET);
+      memberSheet = spreadsheet.insertSheet(CONFIG.MEMBERS_SHEET);
       
       // Set up headers
-      sheet.getRange('A1:C1').setValues([['Name', 'Email', 'Roles']]);
+      memberSheet.getRange('A1:C1').setValues([['Name', 'Email', 'Roles']]);
       
       // Add some initial data
       const initialData = [
         ['John Doe', 'john@example.com', 'admin,user'],
         ['Jane Smith', 'jane@example.com', 'user']
       ];
-      sheet.getRange(2, 1, initialData.length, initialData[0].length)
+      memberSheet.getRange(2, 1, initialData.length, initialData[0].length)
         .setValues(initialData);
       
       // Format headers
-      sheet.getRange('A1:C1')
+      memberSheet.getRange('A1:C1')
         .setBackground('#f3f3f3')
         .setFontWeight('bold');
       
       // Auto-resize columns
-      sheet.autoResizeColumns(1, 3);
+      memberSheet.autoResizeColumns(1, 3);
     }
-
+    if (!settingsSheet) {
+      // @ts-ignore
+      settingsSheet = spreadsheet.insertSheet(CONFIG.SETTINGS_SHEET);
+      
+      // Set up headers
+      settingsSheet.getRange('A1:A1').setValues([['Church Name']]);
+      
+      // Add some initial data
+      const initialData = [['Your Church Name']];
+      settingsSheet.getRange(2, 1, initialData.length, initialData[0].length)
+        .setValues(initialData);
+      
+      // Format headers
+      settingsSheet.getRange('A1:A1')
+        .setBackground('#f3f3f3')
+        .setFontWeight('bold');
+      
+      // Auto-resize columns
+      settingsSheet.autoResizeColumns(1, 1);
+    }
     return true;
   } catch (error) {
     console.error('Error initializing sheets:', error);

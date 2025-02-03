@@ -105,5 +105,24 @@
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
-  }
+  },
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.js",
+    "src/**/*.ts",
+    "src/App.svelte",
+    "src/routes/Home.svelte",
+    "src/routes/Members.svelte",
+    "src/routes/Profile.svelte",
+    "src/routes/View.svelte",
+    "src/routes/404.svelte",
+    "src/components/HeaderBar.svelte",
+    "src/components/InitialLoad.svelte",
+    "src/components/NavLink.svelte",
+    "src/components/Panel.svelte",
+    "src/components/Toast.svelte",
+    "src/components/Toaster.svelte",
+    "src/components/UserSelect.svelte",
+    "src/components/AddMemberModal.svelte"
+  ]
 }

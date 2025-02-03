@@ -1,13 +1,11 @@
 import polyfillScriptRun from "./polyfillScriptRun";
 polyfillScriptRun();
 
-/** @typedef {import('../types/gas').AppConfiguration} AppConfiguration */
 /** @typedef {import('../types/gas').User} User */
 /** @typedef {import('../types/gas').ViewConfiguration} ViewConfiguration */
 /** @typedef {import('../types/gas').View} View */
 /** @typedef {import('../types/gas').GetUserArgs} GetUserArgs */
 /** @typedef {import('../types/gas').PutUserArgs} PutUserArgs */
-/** @typedef {import('../types/gas').PutAppConfigArgs} PutAppConfigArgs */
 /** @typedef {import('../types/gas').GetViewConfigArgs} GetViewConfigArgs */
 /** @typedef {import('../types/gas').GetViewDataArgs} GetViewDataArgs */
 
@@ -35,6 +33,11 @@ const mockMembers = [
   }
 ];
 
+// Add to mock data section at top of file
+const mockSettings = {
+  churchName: "Test Church"
+};
+
 /**
  * Generic function to handle API calls
  * @param {string} functionName
@@ -53,6 +56,8 @@ const callAPI = async (functionName, args = []) => {
         const newMember = args;
         mockMembers.push(newMember);
         return newMember;
+      case "getSettings":
+        return mockSettings;
       // Keep existing mock cases if any
       default:
         console.log("No mock data for", functionName);
@@ -69,17 +74,6 @@ const callAPI = async (functionName, args = []) => {
 };
 
 export const GAS_API = {
-  /**
-   * @returns {Promise<AppConfiguration>} the app configuration
-   */
-  getAppConfiguration: () => callAPI("getAppConfiguration"),
-
-  /**
-   * @param {PutAppConfigArgs} args
-   * @returns {Promise<AppConfiguration>} the app configuration
-   */
-  putAppConfiguration: (args) => callAPI("putAppConfiguration", args),
-
   /**
    * @param {GetUserArgs} [args] - Optional parameter containing user email
    * @returns {Promise<User>}
@@ -114,4 +108,9 @@ export const GAS_API = {
    * @returns {Promise<Array<{name: string, email: string, roles: string[]}>>}
    */
   getMembers: () => callAPI("getMembers"),
+
+  /**
+   * @returns {Promise<{churchName: string}>}
+   */
+  getSettings: () => callAPI("getSettings"),
 };

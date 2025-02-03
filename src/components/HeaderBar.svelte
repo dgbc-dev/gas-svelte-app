@@ -1,6 +1,6 @@
 <script>
     import { Link } from "svelte-routing";
-    export let title = "";
+    export let title;
     import { sessionUser, isLoading } from "../stores";
 </script>
 
@@ -22,7 +22,7 @@
         </label>
     </div>
     <div class="flex-1">
-        <div class="btn btn-ghost normal-case text-xl">
+        <div class="btn  btn-ghost normal-case bg-color-primary text-xl">
             <Link to="/">{title}</Link>
         </div>
     </div>

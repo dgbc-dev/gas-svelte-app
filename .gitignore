@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+gas_token.json
+.clasp.json
 
 # Editor directories and files
 .vscode/*

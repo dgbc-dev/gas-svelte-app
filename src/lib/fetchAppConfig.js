@@ -1,4 +1,4 @@
-import { isLoading, appConfiguration } from "../stores";
+import { isLoading } from "../stores";
 import { GAS_API } from "./GAS_API";
 
 /**
@@ -9,15 +9,15 @@ export async function fetchAppConfiguration() {
 
   console.log("fetching app configuration...");
 
-  GAS_API.getAppConfiguration()
-    .then((result) => {
-      appConfiguration.set(result);
-    })
-    .catch((err) => {
-      console.error("Could not get app configuration:", err);
-    })
-    .finally(() => {
-      console.log("App configuration loaded.");
-      isLoading.set(false);
-    });
+  // GAS_API.getAppConfiguration()
+  //   .then((result) => {
+  //     appConfiguration.set(result);
+  //   })
+  //   .catch((err) => {
+  //     console.error("Could not get app configuration:", err);
+  //   })
+  //   .finally(() => {
+  //     console.log("App configuration loaded.");
+  //     isLoading.set(false);
+  //   });
 }

@@ -10,10 +10,6 @@ function doGet(e) {
 
   // Otherwise, we check to see if this application has been initialized.
   // If not, we do so now
-  let appConfig = loadAppConfiguration_();
-  if (!appConfig) {
-    initializeApp_();
-  }
 
   // At this point we should
 

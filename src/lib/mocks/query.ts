@@ -1,4 +1,4 @@
-import { ViewConfigurationType } from "../../types/schemas";
+import type { ViewConfigurationType } from "../../types/schemas";
 import { mockData } from "./data/mockData";
 
 /**

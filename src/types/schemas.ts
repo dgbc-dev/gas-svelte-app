@@ -27,19 +27,26 @@ const User = z.object({
   activity: z.array(UserActivity),
 });
 
-const AppConfiguration = z.object({
-  appName: z.string(),
-  deployingUserEmail: z.string(),
-  admins: z.array(User),
+const ViewConfiguration = z.object({
+  id: z.string(),
+  dataSource: z.object({
+    spreadsheetId: z.string(),
+    gid: z.string(),
+    storageType: z.string(),
+    schema: z.object({
+      fields: z.array(z.any())
+    })
+  }),
+  fields: z.array(z.any())
 });
 
 // You need to export in this format. See
 // https://stackoverflow.com/questions/48791868/use-typescript-with-google-apps-script
 // for more info.
-export { AppConfiguration, UserPreferences, UserProfile, UserActivity, User };
+export { UserPreferences, UserProfile, UserActivity, User };
 
-export type AppConfigurationType = z.infer<typeof AppConfiguration>;
 export type UserPreferencesType = z.infer<typeof UserPreferences>;
 export type UserProfileType = z.infer<typeof UserProfile>;
 export type UserActivityType = z.infer<typeof UserActivity>;
 export type UserType = z.infer<typeof User>;
+export type ViewConfigurationType = z.infer<typeof ViewConfiguration>;
