@@ -1,5 +1,5 @@
 <script>
-  import { sessionUser } from "../stores.ts";
+  // import { sessionUser } from "../stores.ts";
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
 

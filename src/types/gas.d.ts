@@ -1,4 +1,8 @@
 declare global {
+  interface Window {
+    google: typeof google;
+  }
+
   var google: {
     script: {
       run: {
@@ -16,16 +20,6 @@ export interface User {
   roles: string[];
 }
 
-export interface ViewConfiguration {
-  id: string;
-  [key: string]: any;
-}
-
-export interface View {
-  id: string;
-  [key: string]: any;
-}
-
 export interface GetUserArgs {
   email?: string;
 }
@@ -34,14 +28,6 @@ export interface PutUserArgs {
   email: string;
   name: string;
   roles: string[];
-}
-
-export interface GetViewConfigArgs {
-  id: string;
-}
-
-export interface GetViewDataArgs {
-  id: string;
 }
 
 // This export is needed to make this a module

@@ -1,12 +1,4 @@
 import { derived, writable } from "svelte/store";
-import { UserType } from "./types/schemas";
 
-export const sessionUser = writable<UserType | null>(null);
-export const userIsAdmin = derived(sessionUser, ($sessionUser) => {
-  return (
-    $sessionUser?.roles.includes("admin") ||
-    $sessionUser?.roles.includes("superAdmin")
-  );
-});
-
+export const userIsAdmin = writable(false); // Default to false or set based on your needs
 export const isLoading = writable<boolean>(false);

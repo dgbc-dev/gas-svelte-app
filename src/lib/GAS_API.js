@@ -1,13 +1,10 @@
 import polyfillScriptRun from "./polyfillScriptRun";
 polyfillScriptRun();
 
+/** @typedef {import('../types/gas.d')} */
 /** @typedef {import('../types/gas').User} User */
-/** @typedef {import('../types/gas').ViewConfiguration} ViewConfiguration */
-/** @typedef {import('../types/gas').View} View */
 /** @typedef {import('../types/gas').GetUserArgs} GetUserArgs */
 /** @typedef {import('../types/gas').PutUserArgs} PutUserArgs */
-/** @typedef {import('../types/gas').GetViewConfigArgs} GetViewConfigArgs */
-/** @typedef {import('../types/gas').GetViewDataArgs} GetViewDataArgs */
 
 // Add mock data for development
 const mockMembers = [
@@ -66,6 +63,7 @@ const callAPI = async (functionName, args = []) => {
 
   console.log("calling api", functionName, args);
   return new Promise((resolve, reject) => {
+    // @ts-ignore
     google.script.run
       .withSuccessHandler(resolve)
       .withFailureHandler(reject)
@@ -74,30 +72,6 @@ const callAPI = async (functionName, args = []) => {
 };
 
 export const GAS_API = {
-  /**
-   * @param {GetUserArgs} [args] - Optional parameter containing user email
-   * @returns {Promise<User>}
-   */
-  getUser: (args) => callAPI("getUser", args),
-
-  /**
-   * @param {PutUserArgs} args
-   * @returns {Promise<User>}
-   */
-  putUser: (args) => callAPI("putUser", args),
-
-  /**
-   * @param {GetViewConfigArgs} args
-   * @returns {Promise<ViewConfiguration>}
-   */
-  getViewConfiguration: (args) => callAPI("getViewConfiguration", args),
-
-  /**
-   * @param {GetViewDataArgs} args
-   * @returns {Promise<View>}
-   */
-  getViewData: (args) => callAPI("getViewData", args),
-
   /**
    * @param {{name: string, email: string, roles: string[]}} args
    * @returns {Promise<{name: string, email: string, roles: string[]}>}

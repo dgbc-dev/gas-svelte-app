@@ -1,7 +1,7 @@
 <script>
     import { Link } from "svelte-routing";
     export let title;
-    import { sessionUser, isLoading } from "../stores";
+    import {  isLoading } from "../stores";
 </script>
 
 <div class="navbar bg-base-100 mb-8  {$isLoading ? 'loading-border' : ''}">
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div class="flex-none">
+    <!-- <div class="flex-none">
         
         <Link to={`/user/${$sessionUser?.email}`}>
             <div class="btn btn-ghost btn-circle avatar">
@@ -38,7 +38,7 @@
                 </div>
             </div>
         </Link>
-    </div>
+    </div> -->
 </div>
 
 <style>
